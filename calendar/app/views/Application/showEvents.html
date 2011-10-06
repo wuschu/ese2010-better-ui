@@ -1,0 +1,36 @@
+<div align="right"><a href="http://localhost:9000/">Go Back to Startpage</a></div>
+<h1>Events in ${calendar.name}:</h1>
+
+
+#{list items:events, as:'event'}
+	<ul>
+		${event.eventName}, starts at: ${event.startTime}, ends at: ${event.endTime}
+	</ul>
+#{/list}
+
+#{form @Application.addEvent()}
+	<h2> Add a new Event: </h2>
+	  <p>
+        <label for="eventName">Name of the Event: </label>
+        <input name="eventName" id="eventName"/>
+    </p>
+	 <p>
+        <label for="startsAt">Start Date (dd.MM.yyyy, HH.mm): </label>
+        <input type="text" name="startsAt" id="startsAt" />
+    </p>
+     <p>
+        <label for="endsAt">End Date (dd.MM.yyyy HH.mm): </label>
+        <input type="text" name="endsAt" id="endsAt" />
+        
+     <p>
+    	<label for="isPublic">Is Public yes or now? Check the box if it is public: </label>
+    	<input type="checkbox" name="isPublic" value="isPublic"/>
+    </p>
+    
+    <input type="hidden" name="email" id="email" value="${user.email}" />
+    <input type="hidden" name="calendarname" id="calendarname" value="${calendar.name}" />
+    
+    </p>
+		<input type="submit" value="Submit your Event" />
+    </p>
+#{/form}

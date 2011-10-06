@@ -1,0 +1,11 @@
+1).
+## 1. An HTTP Request is received by the framework.
+## 2. The Router component tries to find the most specific route able to accept this request. The corresponding action method is then invoked.
+## 3. The application code is executed.
+## 4. If a complex view needs to be generated, a template file is rendered.
+## 5. The result of the action method (HTTP Response code, Content) is then written as an HTTP Response.
+
+Source: http://www.playframework.org/documentation/1.0.1/main
+
+2).
+## by using unit, functional or selenium tests.

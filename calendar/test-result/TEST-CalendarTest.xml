@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<testsuite failures="0" time="0.006" errors="0" skipped="0" tests="6" name="CalendarTest">
+  <testcase classname="CalendarTest" name="testIfCalendarHasName" time="0.001">
+      </testcase>
+  <testcase classname="CalendarTest" name="testIfCalendarHasEmail" time="0.001">
+      </testcase>
+  <testcase classname="CalendarTest" name="testIfCalendarHasEvent" time="0">
+      </testcase>
+  <testcase classname="CalendarTest" name="testEventAtDate" time="0.001">
+      </testcase>
+  <testcase classname="CalendarTest" name="testEventOverMultipleDays" time="0.001">
+      </testcase>
+  <testcase classname="CalendarTest" name="testGetAllEventsGetCalendarNameAndToString" time="0.002">
+      </testcase>
+</testsuite>

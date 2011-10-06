@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<div align="right"><a href="http://localhost:9000/logout">Logout</a></div>
+
+<h1>${user.fullname}'s Calendars:</h1>
+#{list items:calendars, as:'calendar'}
+<ul>
+	<a href=@{Application.showEvents(user.email, calendar.name)}>
+	${calendar.name}</a>
+</ul>
+#{/list}
+<h1>other users:</h1>
+#{list items:users, as:'user'}
+<ul>
+	<a href=@{Application.showCalendars(user.email)}>
+	${user.fullname}</a>
+</ul>
+#{/list}

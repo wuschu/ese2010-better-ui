@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<testsuite failures="0" time="0.008" errors="0" skipped="0" tests="4" name="EventTest">
+  <testcase classname="EventTest" name="testEventStartDate" time="0.001">
+      </testcase>
+  <testcase classname="EventTest" name="testEventEndDate" time="0.001">
+      </testcase>
+  <testcase classname="EventTest" name="testEventName" time="0.001">
+      </testcase>
+  <testcase classname="EventTest" name="testEventIsPublic" time="0.005">
+      </testcase>
+</testsuite>
