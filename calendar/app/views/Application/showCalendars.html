@@ -13,7 +13,7 @@
 <h1>${user.fullname}'s Calendars:</h1>
 #{list items:calendars, as:'calendar'}
 <ul>
-	<a href=@{Application.showEvents(user.email, calendar.name)}>
+	<a href=@{Application.showEvents(user.email, calendar.name, currentDate)}>
 	${calendar.name}</a>
 	</ul>
 #{/list}

@@ -19,6 +19,10 @@ public class Calendar {
 		eventList.add(event);
 	}
 
+	public void removeEvent(Event event) {
+		eventList.remove(event);
+	}
+
 	public List<Event> getEventAtDate(Date date) {
 		List<Event> eventsAtDateList = new LinkedList<Event>();
 		for (Event event : eventList) {

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -25,9 +26,8 @@ public class Application extends Controller {
 			"April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
 			"November", "December" };
 
-	@Check("isAdmin")
+	// @Check("isAdmin")
 	public static void delete(Long id) {
-
 	}
 
 	public static void index() {
@@ -35,35 +35,56 @@ public class Application extends Controller {
 		List users = Database.getAllUsers();
 		// Remove the current connected user
 		users.remove(user);
+		String currentDate = formatter.format(new Date());
 		List calendars = user.getCalendarList();
-		render(calendars, user, users);
+		render(calendars, user, users, currentDate);
+	}
+
+	public static void deleteEvent() {
+
 	}
 
 	public static void showCalendars(String email) {
 		User user = Database.getUser(email);
 		List calendars = user.getCalendarList();
-		render(user, calendars);
+		String currentDate = formatter.format(new Date());
+		render(user, calendars, currentDate);
 	}
 
 	public static void showEvents(String email, String calendarname,
-			String message) {
+			String currentDate, String message) throws ParseException {
 		User user = Database.getUser(email);
 		User connectedUser = Database.getUser(Security.connected());
 		Calendar calendar = user.getCalendarByName(calendarname);
-		List events = connectedUser.getEventsAllowedToSee(calendar, new Date());
+		List events = connectedUser.getEventsAllowedToSee(calendar,
+				formatter.parse(currentDate));
+		Date dateToParse = formatter.parse(currentDate);
+		dateToParse.setTime(dateToParse.getTime() + 86400000);
+		List removeEvents = connectedUser.getEventsAllowedToSee(calendar,
+				dateToParse);
+		events.removeAll(removeEvents);
+
 		// Creating a list of day contained in a month
-		String month = months[new DateTime().getMonthOfYear() - 1];
+		String month = months[new DateTime(formatter.parse(currentDate))
+				.getMonthOfYear() - 1];
+		int today = new DateTime().getDayOfMonth();
+
 		List<Day> days = new LinkedList<Day>();
 		java.util.Calendar displayedCalendar = java.util.Calendar.getInstance();
+		displayedCalendar.setTime(formatter.parse(currentDate));
 		for (int i = 1; i <= displayedCalendar
 				.getActualMaximum(java.util.Calendar.DAY_OF_MONTH); i++) {
-			days.add(new Day(i));
+			days.add(new Day(i, new DateTime(formatter.parse(currentDate))
+					.getMonthOfYear(), new DateTime(formatter
+					.parse(currentDate)).getYear(), calendar));
 		}
-		render(user, calendar, events, connectedUser, month, days, message);
+		render(user, calendar, events, connectedUser, month, days, message,
+				today);
 	}
 
 	public static void addEvent(String eventName, String calendarname,
-			String email, String startsAt, String endsAt, String isPublic) {
+			String email, String startsAt, String endsAt, String isPublic)
+			throws ParseException {
 		String message = null;
 		User user = Database.getUser(email);
 		Calendar calendar = user.getCalendarByName(calendarname);
@@ -73,7 +94,8 @@ public class Application extends Controller {
 			Date endTime = formatter.parse(endsAt);
 		} catch (Exception e) {
 			message = "Invalid Input!!!! du huärrä ARSCHLOCH chasch nid läse!!!";
-			showEvents(user.getUserMail(), calendar.name, message);
+			showEvents(user.getUserMail(), calendar.name,
+					formatter.format(new Date()), message);
 		}
 
 		// Wenn es nicht der gleiche User ist, kann er keine Events adden.
@@ -85,6 +107,7 @@ public class Application extends Controller {
 					fuerAlleSichtbar));
 		}
 
-		showEvents(user.getUserMail(), calendar.name, message);
+		showEvents(user.getUserMail(), calendar.name,
+				formatter.format(new Date()), message);
 	}
 }

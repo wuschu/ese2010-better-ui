@@ -9,15 +9,28 @@
 	</nav>
 </header>
 
-<h1> ${calendar.name}</h1>
+<h1> ${user.fullname} - ${calendar.name}</h1>
 
 <!-- For showing the calendar in the box -->
 <article>
 	<font size="22">
+	<input type= "submit" value = "Back"/>
 	${month}
+	<input type="submit" value = "Next"/>
 	<div align="right"style="max-width:400px; border:solid 1px black; padding:10px">
 		#{list items:days, as:'day'}
-			${day.dayOfTheMonth}
+		#{if day.hasEvents}
+		<b>
+		#{/if}
+		#{if today == day.dayOfTheMonth}
+			<a id = "today" href=@{Application.showEvents(user.email, calendar.name, day.dateAsString)}>${day.dayOfTheMonth}</a>
+		#{/if}
+		#{else}
+		<a href=@{Application.showEvents(user.email, calendar.name, day.dateAsString)}>${day.dayOfTheMonth}</a>
+		#{/else}
+		#{if day.hasEvents}
+		</b>
+		#{/if}
 		#{/list}
 	</div>
 </font>
@@ -25,10 +38,13 @@
 
 
 
-<h1>Events in ${calendar.name}:</h1>
+<h1>Events:</h1>
 #{list items:events, as:'event'}
 	<ul>
-		${event.eventName}, starts at: ${event.startTime}, ends at: ${event.endTime} <input type="submit" value="Edit" /> <input type="submit" value="Delete" />
+		${event.eventName}, starts at: ${event.startTime}, ends at: ${event.endTime} 
+		
+		<input type="submit" value="Edit" /> 
+		<input type="submit" value="Delete" />
 	</ul>
 #{/list}
 </article>
@@ -52,11 +68,11 @@
     </p>
 
 	 <p>
-        <label for="startsAt">Start Date (dd.MM.yyyy, HH.mm): </label>
+        <label for="startsAt">Start Date (dd.MM.yyyy, HH:mm): </label>
         <input type="text" name="startsAt" id="startsAt" />
     </p>
      <p>
-        <label for="endsAt">End Date (dd.MM.yyyy, HH.mm): </label>
+        <label for="endsAt">End Date (dd.MM.yyyy, HH:mm): </label>
         <input type="text" name="endsAt" id="endsAt" />
         
      <p>
