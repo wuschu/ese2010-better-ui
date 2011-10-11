@@ -1,6 +1,5 @@
-04 Okt 2011 23:07:20,360 INFO  ~ Starting C:\Users\domi\Documents\My Dropbox\Public\HS11\Info\ESE\francis2\calendar
-04 Okt 2011 23:07:20,364 INFO  ~ Module secure is available (C:\play\modules\secure)
-04 Okt 2011 23:07:20,834 WARN  ~ You're running Play! in DEV mode
-04 Okt 2011 23:07:20,912 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-04 Okt 2011 23:07:45,021 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
-04 Okt 2011 23:07:45,052 INFO  ~ Application 'ese2011-simple-ui-dfeller' is now started !
+10 oct. 2011 15:40:54,649 INFO  ~ Starting /Users/francis/Mes Documents/Université/3. Semester/Einführung in Software Engineering/Übungen/ese2011-simple-ui2/calendar/.
+10 oct. 2011 15:40:54,652 INFO  ~ Module secure is available (/usr/local/Cellar/play/1.2.3/libexec/modules/secure)
+10 oct. 2011 15:40:55,161 WARN  ~ You're running Play! in DEV mode
+10 oct. 2011 15:40:56,464 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+10 oct. 2011 15:40:56,483 INFO  ~ Application 'ese2011-simple-ui-dfeller' is now started !

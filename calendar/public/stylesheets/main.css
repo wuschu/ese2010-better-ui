@@ -1,0 +1,64 @@
+header {
+	position:absolute;
+	left: 5em;
+	height: 10em;
+	width: 100%;
+}
+header nav {
+	position:absolute;
+	left:50%;
+	top:0;
+}
+
+article {
+	background: #CCC;
+	position: absolute;
+	top: 5em;
+	width: 50em;
+	left: 5em;
+	padding: 1em;
+}
+
+aside {
+	background: #CCC;
+	position: absolute;
+	top: 5em;
+	width: 30em;
+	left: 60em;
+	padding: 1em;
+}
+
+nav#sitenav {
+	font-size: x-large;
+	font-variant: small-caps;
+}
+
+header nav ol li a {
+	text-decoration: none;
+}
+
+nav ol li a:hover {
+	background: #AAA;
+	color: #FFF;
+}
+
+nav ol li {
+	display: inline;
+}
+
+form p {
+	width: 30em;
+	min-height: 2em;
+}
+form p label {
+	width: 55%;
+	display: block;
+	float: left;
+	font-variant: small-caps;
+}
+form p input {
+	width: 40%;
+	float: right;
+	display: block;
+}
+	

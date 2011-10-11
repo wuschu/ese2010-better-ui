@@ -44,7 +44,7 @@ public class User {
 	public List<Event> getEventsAllowedToSee(Calendar calendar, Date date) {
 		List<Event> eventsAllowedToSee = new LinkedList<Event>();
 
-		if (calendar.getOwner().equals(this))
+		if (calendar.getOwner().equals(this.email))
 			for (Event event : calendar.getEventsAsList()) {
 				if (event.getEndTime().after(date)) {
 					eventsAllowedToSee.add(event);

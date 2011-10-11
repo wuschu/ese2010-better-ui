@@ -1,7 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Other Users Calendars' /}
+
+<header>
+	<nav id="sitenav">
+		<ol>
+			<li> <div align="right"><a href="http://localhost:9000/">Go Back to Startpage</a></div>
+		</ol>
+	</nav>
+</header>
+
+<article>
 <h1>${user.fullname}'s Calendars:</h1>
 #{list items:calendars, as:'calendar'}
 <ul>
 	<a href=@{Application.showEvents(user.email, calendar.name)}>
 	${calendar.name}</a>
-</ul>
+	</ul>
 #{/list}
+</article>
+	
+

@@ -1,25 +1,62 @@
-<div align="right"><a href="http://localhost:9000/">Go Back to Startpage</a></div>
+#{extends 'main.html' /}
+#{set title:'Events' /}
+
+<header>
+	<nav id="sitenav">
+		<ol>
+			<li> <div align="right"><a href="http://localhost:9000/">Go Back to Startpage</a></div>
+		</ol>
+	</nav>
+</header>
+
+<h1> ${calendar.name}</h1>
+
+<!-- For showing the calendar in the box -->
+<article>
+	<font size="22">
+	${month}
+	<div align="right"style="max-width:400px; border:solid 1px black; padding:10px">
+		#{list items:days, as:'day'}
+			${day.dayOfTheMonth}
+		#{/list}
+	</div>
+</font>
+
+
+
+
 <h1>Events in ${calendar.name}:</h1>
-
-
 #{list items:events, as:'event'}
 	<ul>
-		${event.eventName}, starts at: ${event.startTime}, ends at: ${event.endTime}
+		${event.eventName}, starts at: ${event.startTime}, ends at: ${event.endTime} <input type="submit" value="Edit" /> <input type="submit" value="Delete" />
 	</ul>
 #{/list}
+</article>
 
+	
+
+#{if user.equals(connectedUser) }
 #{form @Application.addEvent()}
+<aside>
 	<h2> Add a new Event: </h2>
+
+<!-- If there is an invalid input -->
+#{if message}
+	<font size="20">
+	<font color="red">${message}</font>
+	</font>
+#{/if}
 	  <p>
         <label for="eventName">Name of the Event: </label>
         <input name="eventName" id="eventName"/>
     </p>
+
 	 <p>
         <label for="startsAt">Start Date (dd.MM.yyyy, HH.mm): </label>
         <input type="text" name="startsAt" id="startsAt" />
     </p>
      <p>
-        <label for="endsAt">End Date (dd.MM.yyyy HH.mm): </label>
+        <label for="endsAt">End Date (dd.MM.yyyy, HH.mm): </label>
         <input type="text" name="endsAt" id="endsAt" />
         
      <p>
@@ -34,3 +71,8 @@
 		<input type="submit" value="Submit your Event" />
     </p>
 #{/form}
+#{/if}
+</aside>
+
+
+

@@ -5,21 +5,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import play.data.validation.Required;
+
 public class Event {
 	public String eventName;
 	public Date startTime, endTime;
 	DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
 	public boolean isPublic;
-	String message = null;
 
-	public Event(String title, String startsAt, String endsAt, boolean isPublic) {
+	public Event(@Required String title, @Required String startsAt,
+			@Required String endsAt, @Required boolean isPublic) {
 		try {
 			this.eventName = title;
 			this.startTime = formatter.parse(startsAt);
 			this.endTime = formatter.parse(endsAt);
 			this.isPublic = isPublic;
 		} catch (ParseException e) {
-			message = "invalid input!!!";
 			e.printStackTrace();
 
 		}
